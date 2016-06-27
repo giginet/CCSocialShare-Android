@@ -12,7 +12,7 @@ before_install:
   - git clone --branch cocos2d-x-3.11.1 --recursive https://github.com/cocos2d/cocos2d-x.git $HOME/cocos2d-x
   - export COCOS_X_ROOT=$HOME/cocos2d-x
   - export PATH=$PATH:$HOME/cocos2d-x/tools/cocos2d-console/bin
-  - python $HOME/cocos2d-x/download-deps.py
+  - yes | python $HOME/cocos2d-x/download-deps.py
 cache:
   - $HOME/cocos2d-x
   - $HOME/android-ndk
