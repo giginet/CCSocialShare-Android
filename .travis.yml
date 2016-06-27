@@ -1,0 +1,21 @@
+env:
+  global:
+    - LC_CTYPE=en_US.UTF-8
+before_install:
+  - brew update
+  - brew update
+  - brew install ant android-sdk android-ndk
+  - export ANDROID_HOME=/usr/local/opt/android-sdk
+  - export NDK_ROOT=/usr/local/opt/android-ndk
+  - git clone --tag cocos2d-x-3.11.1 https://github.com/cocos2d/cocos2d-x.git --recursive $HOME
+cache:
+  - $HOME/cocos2d-x
+  - /usr/local/Cellar/android-ndk
+  - /usr/local/Cellar/android-sdk
+matrix:
+  include:
+    - os: osx
+      language: objective-c
+      osx_image: xcode7.3
+script: 
+  - cocos compile -p android --android-studio
