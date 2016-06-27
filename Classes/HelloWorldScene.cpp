@@ -1,4 +1,5 @@
 #include "HelloWorldScene.h"
+#include "CCSocialManager.h"
 
 USING_NS_CC;
 
@@ -71,16 +72,28 @@ bool HelloWorld::init()
 
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
-    
+
     return true;
 }
 
 
 void HelloWorld::menuCloseCallback(Ref* pSender)
 {
-    Director::getInstance()->end();
+    onShareButtonTapped();
+}
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-#endif
+void HelloWorld::onShareButtonTapped() {
+    if (CCSocialShare::SocialManager::isAvailable(CCSocialShare::Service::TWITTER)) {
+        CCSocialShare::SocialManager::postMessage(CCSocialShare::Service::TWITTER,
+                                                  "I beat this game!",
+                                                  [](CCSocialShare::PostResult result) {
+            if (result == CCSocialShare::PostResult::SUCCEED) {
+                // When to post is succeed
+                log("Done");
+            } else if (result == CCSocialShare::PostResult::CANCELED) {
+                // When to post is canceled
+                log("Canceled");
+            }
+        });
+    }
 }
