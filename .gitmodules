@@ -1,0 +1,3 @@
+[submodule "Classes/external/CCSocialShare"]
+	path = Classes/external/CCSocialShare
+	url = https://github.com/giginet/CCSocialShare.git
