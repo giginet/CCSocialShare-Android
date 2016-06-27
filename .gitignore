@@ -123,7 +123,6 @@ tests/*/proj.android-studio/app/build.xml
 tests/*/proj.android-studio/app/proguard-project.txt
 
 # Android
-project.properties
 *.iml
 
 # Ignore prebuilt libraries folder
