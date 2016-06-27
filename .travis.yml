@@ -7,6 +7,7 @@ before_install:
   - wget http://dl.google.com/android/repository/android-ndk-r12-linux-x86_64.zip
   - unzip android-ndk-r12-linux-x86_64.zip > /dev/null 2>&1
   - mv android-ndk-r12 $HOME/android-ndk
+  - export ANDROID_SDK_ROOT=/usr/local/android-sdk
   - export NDK_ROOT=$HOME/android-ndk
   - git clone --branch cocos2d-x-3.11.1 --recursive https://github.com/cocos2d/cocos2d-x.git $HOME/cocos2d-x
   - export COCOS_X_ROOT=$HOME/cocos2d-x
