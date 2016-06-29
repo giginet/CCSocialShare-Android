@@ -4,9 +4,9 @@ env:
 before_install:
   - mkdir $HOME/.cocos
   - cp config/local_cfg.json $HOME/.cocos
-  - wget http://dl.google.com/android/repository/android-ndk-r12-linux-x86_64.zip
-  - unzip android-ndk-r12-linux-x86_64.zip > /dev/null 2>&1
-  - mv android-ndk-r12 $HOME/android-ndk
+  - wget http://dl.google.com/android/repository/android-ndk-r10e-linux-x86_64.zip
+  - unzip android-ndk-r10e-linux-x86_64.zip > /dev/null 2>&1
+  - mv android-ndk-r10e $HOME/android-ndk
   - git clone --branch cocos2d-x-3.11.1 --recursive https://github.com/cocos2d/cocos2d-x.git $HOME/cocos2d-x
   - yes | python $HOME/cocos2d-x/download-deps.py
 env:
