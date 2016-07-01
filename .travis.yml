@@ -11,7 +11,6 @@ before_install:
   - unzip android-ndk-r10e-darwin-x86_64.zip > /dev/null 2>&1
   - mv android-ndk-r10e $HOME/android-ndk
   - git clone --branch cocos2d-x-3.11.1 --recursive https://github.com/cocos2d/cocos2d-x.git $HOME/cocos2d-x
-  - yes | python $HOME/cocos2d-x/download-deps.py
   - echo 'y' | android update sdk -u --filter android-23
 env:
   global:
