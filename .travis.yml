@@ -11,7 +11,8 @@ before_install:
   - unzip android-ndk-r10e-darwin-x86_64.zip > /dev/null 2>&1
   - mv android-ndk-r10e $HOME/android-ndk
   - git clone --branch cocos2d-x-3.11.1 --recursive https://github.com/cocos2d/cocos2d-x.git $HOME/cocos2d-x
-  - echo 'y' | android update sdk -u --filter android-23
+  - android list sdk
+  - echo 'y' | android update sdk -u --filter android-22
 env:
   global:
     - NDK_ROOT=$HOME/android-ndk 
@@ -30,4 +31,6 @@ cache:
   - $HOME/.cocos
   - cocos/external
 script: 
-  - cocos compile -p android --android-studio --ap android-23
+  - cd proj.android-studio
+  - ./gradlew --info build
+  - cocos compile -p android --android-studio --ap android-22
