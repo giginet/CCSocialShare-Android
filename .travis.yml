@@ -4,15 +4,15 @@ env:
 before_install:
   - mkdir $HOME/.cocos
   - cp config/local_cfg.json $HOME/.cocos
-  - curl -O https://dl.google.com/android/android-sdk_r22-macosx.zip
-  - unzip android-sdk_r22-macosx.zip > /dev/null 2>&1
+  - curl -O https://dl.google.com/android/android-sdk_r24.4.1-macosx.zip
+  - unzip android-sdk_r24.4.1-macosx.zip > /dev/null 2>&1
   - mv android-sdk-macosx $HOME/android-sdk
   - curl -O http://dl.google.com/android/repository/android-ndk-r10e-darwin-x86_64.zip
   - unzip android-ndk-r10e-darwin-x86_64.zip > /dev/null 2>&1
   - mv android-ndk-r10e $HOME/android-ndk
   - git clone --branch cocos2d-x-3.11.1 --recursive https://github.com/cocos2d/cocos2d-x.git $HOME/cocos2d-x
   - yes | python $HOME/cocos2d-x/download-deps.py
-  - echo 'y' | android update sdk -u
+  - echo 'y' | android update sdk -u --filter android-23
 env:
   global:
     - NDK_ROOT=$HOME/android-ndk 
@@ -30,8 +30,5 @@ cache:
   - $HOME/android-ndk
   - $HOME/.cocos
   - cocos/external
-android:
-  components:
-    - android-22
 script: 
-  - cocos compile -p android --android-studio
+  - cocos compile -p android --android-studio --ap android-23
