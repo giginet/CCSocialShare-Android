@@ -12,6 +12,7 @@ before_install:
   - mv android-ndk-r10e $HOME/android-ndk
   - git clone --branch cocos2d-x-3.11.1 --recursive https://github.com/cocos2d/cocos2d-x.git $HOME/cocos2d-x
   - yes | python $HOME/cocos2d-x/download-deps.py
+  - echo 'y' | android update sdk -u
 env:
   global:
     - NDK_ROOT=$HOME/android-ndk 
