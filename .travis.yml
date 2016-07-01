@@ -4,22 +4,28 @@ env:
 before_install:
   - mkdir $HOME/.cocos
   - cp config/local_cfg.json $HOME/.cocos
-  - wget http://dl.google.com/android/repository/android-ndk-r10e-linux-x86_64.zip
-  - unzip android-ndk-r10e-linux-x86_64.zip > /dev/null 2>&1
+  - curl -O https://dl.google.com/android/android-sdk_r22-macosx.zip
+  - unzip android-sdk_r22-macosx.zip > /dev/null 2>&1
+  - mv android-sdk-macosx $HOME/android-sdk
+  - curl -O http://dl.google.com/android/repository/android-ndk-r10e-darwin-x86_64.zip
+  - unzip android-ndk-r10e-darwin-x86_64.zip > /dev/null 2>&1
   - mv android-ndk-r10e $HOME/android-ndk
   - git clone --branch cocos2d-x-3.11.1 --recursive https://github.com/cocos2d/cocos2d-x.git $HOME/cocos2d-x
   - yes | python $HOME/cocos2d-x/download-deps.py
 env:
   global:
     - NDK_ROOT=$HOME/android-ndk 
-    - ANDROID_SDK_ROOT=/usr/local/android-sdk 
+    - ANDROID_SDK_ROOT=$HOME/android-sdk
     - COCOS_X_ROOT=$HOME/cocos2d-x 
-    - PATH=$PATH:$HOME/cocos2d-x/tools/cocos2d-console/bin
+    - PATH=$PATH:$HOME/cocos2d-x/tools/cocos2d-console/bin:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools
 matrix:
   include:
-    - language: android
+    - language: objective-c
+  os:
+    - osx
 cache:
   - $HOME/cocos2d-x
+  - $HOME/android-sdk
   - $HOME/android-ndk
   - $HOME/.cocos
   - cocos/external
